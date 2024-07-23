@@ -29,7 +29,7 @@ const Admin = () => {
         setSection({list: true, form: false})
     }
 
-    const handleDelete = (id) => {
+    const handleDelete = (id1) => {
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
               confirmButton: 'btn btn-success',
@@ -48,7 +48,7 @@ const Admin = () => {
             reverseButtons: true
           }).then((result) => {
             if (result.isConfirmed) {
-              dispatch("DELETE_POSTER", {id: id})
+              dispatch("DELETE_POSTER", {id: id1})
             } else if (
               /* Read more about handling dismissals below */
               result.dismiss === Swal.DismissReason.cancel
@@ -63,13 +63,13 @@ const Admin = () => {
     }
 
     return (
-        <div className="w-screen">
-                <div className="flex flex-col space-y-5 md:flex-row md:justify-between px-5 pt-5">
+        <div className="w-screen flex flex-col items-center">
+                <div className="flex flex-col space-y-5 md:flex-row md:justify-between px-5 pt-5 w-4/5">
                     <h2>Administrador</h2>
                     <button onClick={handleButton} className="p-1 w-32 text-sm bg-cyan-800 text-white rounded">Agregar poster</button>
                 </div>
                 {section["list"] && 
-                <div>
+                <div className='w-4/5'>
                     <ul role="list" className="divide-y divide-gray-100 py-5 px-5 w-full">
                     {state.map((poster) => (
                         <li key={poster.id} className="flex h-36 justify-between gap-x-6 py-5">
@@ -90,7 +90,7 @@ const Admin = () => {
                 </div>
                 }
                 {section["form"] &&
-                <div className='flex items-center justify-center py-5'>
+                <div className='w-4/5 flex items-center justify-center py-5'>
                     <form onSubmit={handleSubmit} className="w-4/5 mt-8 flex flex-col grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 lg:w-3/5">
                         <div className="sm:col-span-4">
                             <label htmlFor="movie" className="block text-md font-medium leading-6 text-gray-900">
@@ -200,14 +200,18 @@ const Admin = () => {
                             </label>
                             <div className="mt-2">
                             <div className="flex rounded-md shadow-md ring-1 ring-inset ring-secondary-600 focus-within:ring-2 focus-within:ring-inset focus-within:ring-secondary sm:max-w-md">
-                                <input
-                                type="text"
+                                <select
                                 name="genre"
                                 id="genre"
                                 onChange={(e) => {setNewPoster({...newPoster, genre: e.target.value})}}
                                 className="block grow border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                                
-                                />
+                                >
+                                    <option value="Acción">Acción</option>
+                                    <option value="Animada">Animada</option>
+                                    <option value="Ciencia Ficción">Ciencia Ficción</option>
+                                    <option value="Comedia">Comedia</option>
+                                    <option value="Drama">Drama</option>
+                                </select>
                             </div>
                             </div>
                         </div>

@@ -15,6 +15,6 @@ export const addPoster = async (poster) => await axios.post(`${API}/poster`, pos
 //     }},
 //   );
 
-export const deletePoster = async (id) => await axios.delete(`${API}/posters/${id}`);
+export const deletePoster = async (id) => await axios.delete(`${API}/poster/${id}`);
 
-export const updatePoster = async (id, poster) => await axios.put(`${API}/posters/${id}`, poster);
+export const updatePoster = async (id, poster) => await axios.put(`${API}/poster/${id}`, poster);
